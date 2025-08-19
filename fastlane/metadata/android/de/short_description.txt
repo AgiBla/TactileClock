@@ -1,0 +1,1 @@
+Vibriert die Uhrzeit nach zweimaliger Betätigung des Power Buttons
