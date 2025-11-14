@@ -27,7 +27,6 @@ import de.eric_scheibler.tactileclock.R;
 import de.eric_scheibler.tactileclock.data.HourFormat;
 import de.eric_scheibler.tactileclock.data.TimeComponentOrder;
 import de.eric_scheibler.tactileclock.ui.activity.MainActivity;
-import de.eric_scheibler.tactileclock.utils.SettingsManager;
 import timber.log.Timber;
 import android.annotation.SuppressLint;
 import android.content.pm.ServiceInfo;
@@ -42,6 +41,7 @@ public class TactileClockService extends Service {
     // actions
     public static final String ACTION_UPDATE_NOTIFICATION = "de.eric_scheibler.tactileclock.action.update_notification";
     public static final String ACTION_VIBRATE_TIME = "de.eric_scheibler.tactileclock.action.vibrate_time";
+    public static final String ACTION_VIBRATE_TEST_TIME = "de.eric_scheibler.tactileclock.action.vibrate_test_time";
     public static final String ACTION_VIBRATE_TIME_AND_SET_NEXT_ALARM = "de.eric_scheibler.tactileclock.action.vibrate_time_and_set_next_alarm";
 
     // vibrations
@@ -60,6 +60,10 @@ public class TactileClockService extends Service {
 
     // broadcast responses
     public static final String VIBRATION_FINISHED = "de.eric_scheibler.tactileclock.response.vibration_finished";
+
+    // testing
+    public static int TEST_HOUR;
+    public static int TEST_MINUTE;
 
     // service vars
     private long lastActivation;
@@ -132,19 +136,23 @@ public class TactileClockService extends Service {
                     // double click detected
                     // screen was turned on and off correctly
                     // vibrate time
-                    vibrateTime(false, false);
+                    vibrateTime(false, false, false);
                 }
                 lastActivation = System.currentTimeMillis();
 
             } else if (ACTION_VIBRATE_TIME.equals(intent.getAction())) {
-                vibrateTime(false, false);
+                vibrateTime(false, false, false);
+
+            } else if (ACTION_VIBRATE_TEST_TIME.equals(intent.getAction())) {
+                vibrateTime(false, false, true);
 
             } else if (ACTION_VIBRATE_TIME_AND_SET_NEXT_ALARM.equals(intent.getAction())) {
                 // vibrate current time
                 if (this.isVibrationAllowed()) {
                     vibrateTime(
                             settingsManagerInstance.getWatchAnnouncementVibration(),
-                            settingsManagerInstance.getWatchOnlyVibrateMinutes());
+                            settingsManagerInstance.getWatchOnlyVibrateMinutes(),
+                            false);
                 }
 
                 // set next alarm
@@ -212,8 +220,12 @@ public class TactileClockService extends Service {
      * vibration pattern functions
      */
 
-    @TargetApi(Build.VERSION_CODES.O)
-    private void vibrateTime(boolean announcementVibration, boolean minutesOnly) {
+    private void vibrateTime(boolean announcementVibration, boolean minutesOnly, boolean testTime) {
+        if (testTime) {
+            vibrateTime(announcementVibration, minutesOnly, TEST_HOUR, TEST_MINUTE);
+            return;
+        }
+
         // get current time
         int hours, minutes;
         Calendar c = Calendar.getInstance();
@@ -228,6 +240,11 @@ public class TactileClockService extends Service {
         }
         minutes = c.get(Calendar.MINUTE);
 
+        vibrateTime(announcementVibration, minutesOnly, hours, minutes);
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private void vibrateTime(boolean announcementVibration, boolean minutesOnly, int hours, int minutes) {
         // create vibration pattern
         // start with short initial gap
         long[] pattern = new long[]{SHORT_GAP};
