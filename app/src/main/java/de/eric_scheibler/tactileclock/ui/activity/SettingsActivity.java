@@ -1,12 +1,16 @@
 package de.eric_scheibler.tactileclock.ui.activity;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.TextClock;
 import android.widget.TimePicker;
 
@@ -26,6 +30,8 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
 
     private SwitchCompat switchMaxStrengthVibrations;
     private RadioGroup radioHourFormat, radioTimeComponentOrder;
+    private SeekBar seekBarShort, seekBarLong;
+    private TextView textViewShortValue, textViewLongValue;
     private Button buttonTest;
     private TextClock textClock;
     private Integer testHour, testMinute;
@@ -85,6 +91,48 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
             }
         });
 
+        // seekbars
+        seekBarShort = (SeekBar) findViewById(R.id.seekBarShort);
+        seekBarShort.setProgress(settingsManagerInstance.getShortVibration() / 5);
+        seekBarShort.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                settingsManagerInstance.setShortVibration(progress * 5);
+                updateUI();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) { }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(settingsManagerInstance.getShortVibration());
+            }
+        });
+
+        seekBarLong = (SeekBar) findViewById(R.id.seekBarLong);
+        seekBarLong.setProgress(settingsManagerInstance.getLongVibration() / 5);
+        seekBarLong.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                settingsManagerInstance.setLongVibration(progress * 5);
+                updateUI();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) { }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(settingsManagerInstance.getLongVibration());
+            }
+        });
+
+        textViewShortValue = (TextView) findViewById(R.id.textViewShortValue);
+        textViewLongValue = (TextView) findViewById(R.id.textViewLongValue);
+
         textClock = (TextClock) findViewById(R.id.textClock);
         textClock.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +151,6 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
         buttonTest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(SettingsActivity.this, TactileClockService.class);
-                //intent.setAction(TactileClockService.ACTION_VIBRATE_TIME);
                 TactileClockService.TEST_HOUR = testHour;
                 TactileClockService.TEST_MINUTE = testMinute;
                 intent.setAction(TactileClockService.ACTION_VIBRATE_TEST_TIME);
@@ -129,6 +176,9 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
 
         boolean is12HourFormat = settingsManagerInstance.getHourFormat() == HourFormat.TWELVE_HOURS;
         boolean isMinutesFirst = settingsManagerInstance.getTimeComponentOrder() == TimeComponentOrder.MINUTES_HOURS;
+
+        textViewShortValue.setText(settingsManagerInstance.getShortVibration() + " ms");
+        textViewLongValue.setText(settingsManagerInstance.getLongVibration() + " ms");
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, testHour);

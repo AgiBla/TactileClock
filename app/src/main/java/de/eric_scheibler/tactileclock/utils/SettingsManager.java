@@ -31,6 +31,12 @@ public class SettingsManager {
     private static final String KEY_HOUR_FORMAT = "hourFormat";
     private static final String KEY_TIME_COMPONENT_ORDER = "timeComponentOrder";
     private static final String KEY_MAX_STRENGTH_VIBRATIONS_ENABLED = "maxStrengthVibrationsEnabled";
+    // vibration settings
+    private static final String KEY_SHORT_VIBRATION = "shortVibration";
+    private static final String KEY_LONG_VIBRATION = "longVibration";
+    private static final String KEY_SHORT_GAP = "shortGap";
+    private static final String KEY_MEDIUM_GAP = "mediumGap";
+    private static final String KEY_LONG_GAP = "longGap";
     // power button
     private static final String KEY_POWER_BUTTON_SERVICE_ENABLED = "enableService";
     private static final String KEY_POWER_BUTTON_ERROR_VIBRATION = "errorVibration";
@@ -148,6 +154,44 @@ public class SettingsManager {
         Editor editor = settings.edit();
         editor.putBoolean(KEY_MAX_STRENGTH_VIBRATIONS_ENABLED, enabled);
         editor.apply();
+    }
+
+    public int getShortVibration() {
+        return settings.getInt(KEY_SHORT_VIBRATION, 200);
+    }
+
+    public void setShortVibration(int duration) {
+        Editor editor = settings.edit();
+        editor.putInt(KEY_SHORT_VIBRATION, duration);
+        editor.apply();
+    }
+
+    public int getLongVibration() {
+        return settings.getInt(KEY_LONG_VIBRATION, 500);
+    }
+
+    public void setLongVibration(int duration) {
+        Editor editor = settings.edit();
+        editor.putInt(KEY_LONG_VIBRATION, duration);
+        editor.apply();
+    }
+
+    public int getShortGap() {
+        return settings.getInt(KEY_SHORT_GAP, 250);
+    }
+
+    public void setShortGap(int duration) {
+        Editor editor = settings.edit();
+        editor.putInt(KEY_SHORT_GAP, duration);
+        editor.apply();
+    }
+
+    public int getMediumGap() {
+        return settings.getInt(KEY_MEDIUM_GAP, 750);
+    }
+
+    public int getLongGap() {
+        return settings.getInt(KEY_LONG_GAP, 1250);
     }
 
 

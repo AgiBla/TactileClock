@@ -80,6 +80,8 @@
     <string name="labelHourFormat">Wähle zwischen 12 und 24 Stunden Zeitformat</string>
     <string name="button12Hours">12 Stunden Format</string>
     <string name="button24Hours">24 Stunden Format</string>
+    <string name="labelShort">Kurz</string>
+    <string name="labelLong">Lange</string>
     <string name="labelTimeComponentOrder">Reihenfolge von Stunden und Minuten</string>
     <string name="buttonHoursMinutes">Erst Stunden, dann Minuten</string>
     <string name="buttonMinutesHours">Erst Minuten, dann Stunden</string>

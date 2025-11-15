@@ -44,19 +44,9 @@ public class TactileClockService extends Service {
     public static final String ACTION_VIBRATE_TEST_TIME = "de.eric_scheibler.tactileclock.action.vibrate_test_time";
     public static final String ACTION_VIBRATE_TIME_AND_SET_NEXT_ALARM = "de.eric_scheibler.tactileclock.action.vibrate_time_and_set_next_alarm";
 
-    // vibrations
-    public static final long SHORT_VIBRATION = 100;
-    public static final long LONG_VIBRATION = 500;
     public static final long ERROR_VIBRATION = 1000;
-
-    // amplitudes
     public static final int AMPLITUDE_DEFAULT = 150;
     public static final int AMPLITUDE_MAX = 250;
-
-    // gaps
-    public static final long SHORT_GAP = 250;
-    public static final long MEDIUM_GAP = 750;
-    public static final long LONG_GAP = 1250;
 
     // broadcast responses
     public static final String VIBRATION_FINISHED = "de.eric_scheibler.tactileclock.response.vibration_finished";
@@ -245,9 +235,11 @@ public class TactileClockService extends Service {
 
     @TargetApi(Build.VERSION_CODES.O)
     private void vibrateTime(boolean announcementVibration, boolean minutesOnly, int hours, int minutes) {
+        long LONG_GAP = settingsManagerInstance.getLongGap();
+
         // create vibration pattern
-        // start with short initial gap
-        long[] pattern = new long[]{SHORT_GAP};
+        long[] pattern = {0}; // start immediately with no gap
+
         // announcement vibration
         if (announcementVibration) {
             pattern = concat(pattern, new long[]{ERROR_VIBRATION, LONG_GAP});
@@ -304,6 +296,8 @@ public class TactileClockService extends Service {
     }
 
     private long[] getVibrationPatternForHours(int hours) {
+        long MEDIUM_GAP = settingsManagerInstance.getMediumGap();
+
         long[] pattern = new long[]{};
         // only add first digit of hour if it is not a zero
         if (hours / 10 > 0) {
@@ -318,6 +312,8 @@ public class TactileClockService extends Service {
     }
 
     private long[] getVibrationPatternForMinutes(int minutes) {
+        long MEDIUM_GAP = settingsManagerInstance.getMediumGap();
+
         long[] pattern = new long[]{};
         // first number of minute
         pattern = concat(pattern, getVibrationPatternForDigit(minutes/10));
@@ -329,35 +325,22 @@ public class TactileClockService extends Service {
     }
 
     private long[] getVibrationPatternForDigit(int digit) {
+        long DOT = settingsManagerInstance.getShortVibration();
+        long DASH = settingsManagerInstance.getLongVibration();
+        long GAP = settingsManagerInstance.getShortGap();
+
         switch (digit) {
-            case 0:
-                return new long[]{LONG_VIBRATION, SHORT_GAP, LONG_VIBRATION};
-            case 1:
-                return new long[]{SHORT_VIBRATION};
-            case 2:
-                return new long[]{SHORT_VIBRATION, SHORT_GAP, SHORT_VIBRATION};
-            case 3:
-                return new long[]{SHORT_VIBRATION, SHORT_GAP, SHORT_VIBRATION,
-                        SHORT_GAP, SHORT_VIBRATION};
-            case 4:
-                return new long[]{SHORT_VIBRATION, SHORT_GAP, SHORT_VIBRATION,
-                        SHORT_GAP, SHORT_VIBRATION, SHORT_GAP, SHORT_VIBRATION};
-            case 5:
-                return new long[]{LONG_VIBRATION};
-            case 6:
-                return new long[]{LONG_VIBRATION, SHORT_GAP, SHORT_VIBRATION};
-            case 7:
-                return new long[]{LONG_VIBRATION, SHORT_GAP, SHORT_VIBRATION,
-                        SHORT_GAP, SHORT_VIBRATION};
-            case 8:
-                return new long[]{LONG_VIBRATION, SHORT_GAP, SHORT_VIBRATION,
-                        SHORT_GAP, SHORT_VIBRATION, SHORT_GAP, SHORT_VIBRATION};
-            case 9:
-                return new long[]{LONG_VIBRATION, SHORT_GAP, SHORT_VIBRATION,
-                        SHORT_GAP, SHORT_VIBRATION, SHORT_GAP, SHORT_VIBRATION,
-                        SHORT_GAP, SHORT_VIBRATION};
-            default:
-                return new long[]{};
+            case 0: return new long[]{DASH, GAP, DASH};
+            case 1: return new long[]{DOT};
+            case 2: return new long[]{DOT, GAP, DOT};
+            case 3: return new long[]{DOT, GAP, DOT, GAP, DOT};
+            case 4: return new long[]{DOT, GAP, DOT, GAP, DOT, GAP, DOT};
+            case 5: return new long[]{DASH};
+            case 6: return new long[]{DASH, GAP, DOT};
+            case 7: return new long[]{DASH, GAP, DOT, GAP, DOT};
+            case 8: return new long[]{DASH, GAP, DOT, GAP, DOT, GAP, DOT};
+            case 9: return new long[]{DASH, GAP, DOT, GAP, DOT, GAP, DOT, GAP, DOT};
+            default: return new long[]{};
         }
     }
 

@@ -76,6 +76,63 @@
                     android:layout_height="wrap_content"
                     android:text="@string/buttonMinutesHours" />
             </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:focusable="true"
+                android:text="@string/labelShortcutVibrateTime" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:text="@string/labelShort" />
+
+                    <SeekBar
+                        android:id="@+id/seekBarShort"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:max="80" />
+
+                    <TextView
+                        android:id="@+id/textViewShortValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:minEms="3"
+                        android:text="50 ms" />
+                </TableRow>
+
+                <TableRow android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:text="@string/labelLong" />
+
+                    <SeekBar
+                        android:id="@+id/seekBarLong"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:max="160" />
+
+                    <TextView
+                        android:id="@+id/textViewLongValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:minEms="3"
+                        android:text="250 ms" />
+                </TableRow>
+            </TableLayout>
+
         </LinearLayout>
     </ScrollView>
 

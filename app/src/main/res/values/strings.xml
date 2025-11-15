@@ -75,7 +75,9 @@
     <string name="switchMaxStrengthVibrations">Vibrate with maximal intensity</string>
     <string name="labelHourFormat">Choose between 12 and 24 hour time format</string>
     <string name="button12Hours">12 hour format</string>
-    <string name="button24Hours">24 hour fourmat</string>
+    <string name="button24Hours">24 hour format</string>
+    <string name="labelShort">Short</string>
+    <string name="labelLong">Long</string>
     <string name="labelTimeComponentOrder">Time component order</string>
     <string name="buttonHoursMinutes">Hours first, then minutes</string>
     <string name="buttonMinutesHours">Minutes first, then hours</string>
