@@ -11,7 +11,6 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.TextClock;
 import android.widget.TimePicker;
 
 import androidx.appcompat.widget.Toolbar;
@@ -30,10 +29,9 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
 
     private SwitchCompat switchMaxStrengthVibrations;
     private RadioGroup radioHourFormat, radioTimeComponentOrder;
-    private SeekBar seekBarShort, seekBarLong;
-    private TextView textViewShortValue, textViewLongValue;
-    private Button buttonTest;
-    private TextClock textClock;
+    private SeekBar seekBarShort, seekBarLong; // Step of 5
+    private TextView textViewShortValue, textViewLongValue, textClock;
+    private Button buttonRefresh, buttonTest;
     private Integer testHour, testMinute;
 
     @Override public int getLayoutResourceId() {
@@ -106,6 +104,7 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                // Vibrate selected setting
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(settingsManagerInstance.getShortVibration());
             }
@@ -125,6 +124,7 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                // Vibrate selected setting
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(settingsManagerInstance.getLongVibration());
             }
@@ -133,17 +133,25 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
         textViewShortValue = (TextView) findViewById(R.id.textViewShortValue);
         textViewLongValue = (TextView) findViewById(R.id.textViewLongValue);
 
-        textClock = (TextClock) findViewById(R.id.textClock);
+        textClock = (TextView) findViewById(R.id.textClock);
         textClock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                int minute = calendar.get(Calendar.MINUTE);
+                // Open time picker dialog
                 boolean is24HourFormat = settingsManagerInstance.getHourFormat() == HourFormat.TWENTYFOUR_HOURS;
-
-                TimePickerDialog timePickerDialog = new TimePickerDialog(SettingsActivity.this, SettingsActivity.this, hour, minute, is24HourFormat);
+                TimePickerDialog timePickerDialog = new TimePickerDialog(SettingsActivity.this, SettingsActivity.this, testHour, testMinute, is24HourFormat);
                 timePickerDialog.show();
+            }
+        });
+
+        buttonRefresh = (Button) findViewById(R.id.buttonRefresh);
+        buttonRefresh.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                // Set the time to the current time
+                Calendar calendar = Calendar.getInstance();
+                testHour = calendar.get(Calendar.HOUR_OF_DAY);
+                testMinute = calendar.get(Calendar.MINUTE);
+                updateUI();
             }
         });
 
@@ -180,10 +188,11 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
         textViewShortValue.setText(settingsManagerInstance.getShortVibration() + " ms");
         textViewLongValue.setText(settingsManagerInstance.getLongVibration() + " ms");
 
+        // Update textClock
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, testHour);
         calendar.set(Calendar.MINUTE, testMinute);
-
+        //
         String pattern;
         if (is12HourFormat) {
             pattern = isMinutesFirst ? "mm:h a" : "h:mm a";
@@ -191,6 +200,7 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
             pattern = isMinutesFirst ? "mm:HH" : "HH:mm";
         }
         SimpleDateFormat sdf = new SimpleDateFormat(pattern, getResources().getConfiguration().locale);
+        //
         textClock.setText(sdf.format(calendar.getTime()));
     }
 }
