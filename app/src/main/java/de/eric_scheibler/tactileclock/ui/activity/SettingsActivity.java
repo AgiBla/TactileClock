@@ -257,7 +257,7 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
         // Update textClock
         // - Round minutes
         if (settingsManagerInstance.getWatchRoundMinutes())
-            testMinute = Math.round(testMinute / 5) * 5;
+            testMinute = (testMinute + 2) / 5 * 5;
         // - Format time
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, testHour);
