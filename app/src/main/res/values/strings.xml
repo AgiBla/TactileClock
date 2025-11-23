@@ -41,6 +41,7 @@
     <string name="buttonWatchStartAtNextFullHour">Start at next full hour</string>
     <string name="buttonWatchAnnouncementVibration">Announcement vibration</string>
     <string name="buttonPlayGTS">Play Greenwich Time Signal</string>
+    <string name="buttonWatchPlayGTSWhileMusic">Reproduce while music is playing</string>
 
     <!-- select integer dialog -->
     <string name="selectWatchIntervalDialogTitle">Vibration interval in minutes:</string>

@@ -29,9 +29,9 @@ public class WatchFragment extends Fragment implements IntegerSelector {
 	private SettingsManager settingsManagerInstance;
 
     private androidx.appcompat.widget.SwitchCompat buttonStartWatch, buttonEnableVibration, buttonPlayGTS;
-    private LinearLayout containerVibrationOptions;
+    private LinearLayout containerVibrationOptions, containerGTSOptions;
     private Button buttonWatchInterval;
-    private androidx.appcompat.widget.SwitchCompat buttonWatchOnlyVibrateMinutes, buttonWatchStartAtNextFullHour, buttonWatchAnnouncementVibration;
+    private androidx.appcompat.widget.SwitchCompat buttonWatchOnlyVibrateMinutes, buttonWatchStartAtNextFullHour, buttonWatchAnnouncementVibration, buttonWatchPlayGTSWhileMusic;
 
     // newInstance constructor for creating fragment with arguments
     public static WatchFragment newInstance() {
@@ -110,6 +110,19 @@ public class WatchFragment extends Fragment implements IntegerSelector {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (settingsManagerInstance.getPlayGTS() != isChecked) {
                     settingsManagerInstance.setPlayGTS(isChecked);
+                    updateUI();
+                }
+            }
+        });
+
+        containerGTSOptions = (LinearLayout) view.findViewById(R.id.containerGTSOptions);
+
+        buttonWatchPlayGTSWhileMusic = (androidx.appcompat.widget.SwitchCompat) view.findViewById(R.id.buttonWatchPlayGTSWhileMusic);
+        buttonWatchPlayGTSWhileMusic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (settingsManagerInstance.getPlayGTSWhileMusic() != isChecked) {
+                    settingsManagerInstance.setPlayGTSWhileMusic(isChecked);
                 }
             }
         });
@@ -196,6 +209,12 @@ public class WatchFragment extends Fragment implements IntegerSelector {
         buttonPlayGTS.setChecked(settingsManagerInstance.getPlayGTS());
         buttonPlayGTS.setClickable(! settingsManagerInstance.isWatchEnabled());
         buttonPlayGTS.setAlpha(alpha);
+
+        containerGTSOptions.setVisibility(buttonPlayGTS.isChecked() ? View.VISIBLE : View.GONE);
+
+        buttonWatchPlayGTSWhileMusic.setChecked(settingsManagerInstance.getPlayGTSWhileMusic());
+        buttonWatchPlayGTSWhileMusic.setClickable(! settingsManagerInstance.isWatchEnabled());
+        buttonWatchPlayGTSWhileMusic.setAlpha(alpha);
     }
 
     @TargetApi(Build.VERSION_CODES.S)

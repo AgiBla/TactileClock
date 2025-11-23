@@ -145,7 +145,7 @@ public class TactileClockService extends Service {
 
             } else if (ACTION_PLAY_GTS.equals(intent.getAction())) {
                 // Play sound
-                if (this.isVibrationAllowed()) {
+                if (audioManager.isMusicActive() ? settingsManagerInstance.getPlayGTS() : this.isVibrationAllowed()) {
                     MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.pips);
                     mediaPlayer.setOnCompletionListener(MediaPlayer::release);
                     mediaPlayer.start();

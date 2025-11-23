@@ -38,6 +38,7 @@
     <string name="buttonWatchStartAtNextFullHour">Comenzar en la próxima hora en punto</string>
     <string name="buttonWatchAnnouncementVibration">Vibración de anuncio</string>
     <string name="buttonPlayGTS">Reproducir Greenwich Time Signal</string>
+    <string name="buttonWatchPlayGTSWhileMusic">Reproducir mientras se reproduce música</string>
 
     <!-- select integer dialog -->
     <string name="selectWatchIntervalDialogTitle">Intervalo de vibración en minutos:</string>

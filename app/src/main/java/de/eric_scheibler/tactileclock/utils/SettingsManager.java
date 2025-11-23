@@ -51,6 +51,8 @@ public class SettingsManager {
     private static final String KEY_WATCH_START_AT_NEXT_FULL_HOUR = "startAtNextFullHour";
     private static final String KEY_WATCH_ANNOUNCEMENT_VIBRATION = "announcement_vibration";
     private static final String KEY_WATCH_PLAY_GTS = "playGTS";
+    private static final String KEY_WATCH_PLAY_GTS_WHILE_MUSIC = "playGTSWhileMusic";
+
 	// defaults
     //
     // general settings
@@ -76,6 +78,7 @@ public class SettingsManager {
     public static final boolean DEFAULT_WATCH_START_AT_NEXT_FULL_HOUR = false;
     public static final boolean DEFAULT_WATCH_ANNOUNCEMENT_VIBRATION = false;
     public static final boolean DEFAULT_WATCH_PLAY_GTS = false;
+    public static final boolean DEFAULT_WATCH_PLAY_GTS_WHILE_MUSIC = true;
 
     // vibration durations
     public static final int DEFAULT_SHORT_VIBRATION = 150;
@@ -428,6 +431,20 @@ public class SettingsManager {
         editor.putBoolean(
                 KEY_WATCH_PLAY_GTS,
                 bGTS);
+        editor.apply();
+    }
+
+    public boolean getPlayGTSWhileMusic() {
+        return settings.getBoolean(
+                KEY_WATCH_PLAY_GTS_WHILE_MUSIC,
+                DEFAULT_WATCH_PLAY_GTS_WHILE_MUSIC);
+    }
+
+    public void setPlayGTSWhileMusic(boolean playGTSWhileMusic) {
+        Editor editor = settings.edit();
+        editor.putBoolean(
+                KEY_WATCH_PLAY_GTS_WHILE_MUSIC,
+                playGTSWhileMusic);
         editor.apply();
     }
 }
