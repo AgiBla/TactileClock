@@ -61,17 +61,22 @@
     <string name="labelApplicationDescription6">La aplicación también permite reproducir la Greenwich Time Signal (popularmente conocido como The Pips) al comienzo de cada hora, como si fuese una emisora de radio.</string>
     <!-- settings activity -->
     <string name="settingsActivityTitle">Ajustes</string>
-    <string name="switchMaxStrengthVibrations">Vibrar con intensidad máxima</string>
     <string name="switchRoundMinutes">Redondear minutos a 5</string>
     <string name="labelHourFormat">Elige entre el formato de 12 y 24 horas</string>
     <string name="button12Hours">Formato de 12 horas</string>
     <string name="button24Hours">Formato de 24 horas</string>
-    <string name="labelShort">Corta</string>
-    <string name="labelLong">Larga</string>
     <string name="labelTimeComponentOrder">Orden de los componentes de la hora</string>
     <string name="buttonHoursMinutes">Primero horas, luego minutos</string>
     <string name="buttonMinutesHours">Primero minutos, luego horas</string>
-    <string name="buttonTest">Test</string>
+    <string name="labelVibrationSettings">Ajustes de vibración</string>
+    <string name="switchMaxStrengthVibrations">Vibrar con intensidad máxima</string>
+    <string name="labelShort">Corta</string>
+    <string name="labelShortCD">Corta vibración</string>
+    <string name="labelLong">Larga</string>
+    <string name="labelLongCD">Larga vibración</string>
+    <string name="labelTestVibrationHeading">Test vibración de hora</string>
+    <string name="buttonRefreshTestTime">Actualizar hora</string>
+    <string name="buttonTestVibration">Test</string>
 
     <!-- info activity -->
     <string name="infoActivityTitle">Información</string>
@@ -92,6 +97,8 @@
     <string name="dialogCancel">Cancelar</string>
     <string name="dialogEnabled">Activado</string>
     <string name="dialogDisabled">Desactivado</string>
+    <string name="warning_dnd_active">El modo No molestar está activado</string>
+    <string name="warning_exact_alarm_permission_missing">No se pueden programar alarmas exactas. Por favor, comprueba los permisos.</string>
 
     <!--
          plurals
@@ -100,13 +107,13 @@
     <plurals
         name="milliseconds">
         <item quantity="one">1 ms</item>
-        <item quantity="other">%d ms</item>
+        <item quantity="many">%d ms</item>
     </plurals>
 
     <plurals
         name="minutes">
         <item quantity="one">1 minuto</item>
-        <item quantity="other">%d minutos</item>
+        <item quantity="many">%d minutos</item>
     </plurals>
 
 </resources>

@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layoutRoot"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent" >
 
     <include
         layout="@layout/layout_toolbar" />
@@ -20,16 +19,9 @@
             android:layout_marginRight="@dimen/activityMargin"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switchMaxStrengthVibrations"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/switchMaxStrengthVibrations" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:focusable="true"
                 android:text="@string/labelHourFormat"
                 android:theme="@style/HeadingTextView" />
@@ -92,8 +84,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:focusable="true"
-                android:text="@string/labelVibrationDurations"
+                android:text="@string/labelVibrationSettings"
                 android:theme="@style/HeadingTextView" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchMaxStrengthVibrations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/switchMaxStrengthVibrations" />
 
             <TableLayout
                 android:layout_width="match_parent"

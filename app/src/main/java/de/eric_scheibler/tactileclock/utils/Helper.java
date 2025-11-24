@@ -61,6 +61,13 @@ public class Helper {
                 VibrationEffect.createWaveform(timings, amplitudes, -1));
     }
 
+    public static void cancelVibration() {
+        Vibrator vibrator = (Vibrator) ApplicationInstance.getContext().getSystemService(Context.VIBRATOR_SERVICE);
+        if (vibrator != null) {
+            vibrator.cancel();
+        }
+    }
+
     // amplitudes
     private static final int VIBRATION_AMPLITUDE_DEFAULT = 150;
     private static final int VIBRATION_AMPLITUDE_MAX = 250;

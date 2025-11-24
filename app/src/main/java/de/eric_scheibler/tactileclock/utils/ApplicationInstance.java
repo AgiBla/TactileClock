@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.os.Build;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
@@ -144,11 +145,18 @@ public class ApplicationInstance extends Application {
     @SuppressLint("MissingPermission")
     private boolean setAlarm(Calendar calendar, boolean bGTS) {
         if (! canScheduleExactAlarms()) {
+            Toast.makeText(this, R.string.warning_exact_alarm_permission_missing, Toast.LENGTH_LONG).show();
             return false;
         }
 
-        long millisSinceDeviceStartup = SystemClock.elapsedRealtime()
-            + Math.abs(calendar.getTimeInMillis() - System.currentTimeMillis());
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            if (notificationManager.getCurrentInterruptionFilter() != NotificationManager.INTERRUPTION_FILTER_ALL) {
+                Toast.makeText(this, R.string.warning_dnd_active, Toast.LENGTH_LONG).show();
+            }
+        }
+
+        long millisSinceDeviceStartup = SystemClock.elapsedRealtime() + Math.abs(calendar.getTimeInMillis() - System.currentTimeMillis());
 
         // create vibrate time pending intent
         PendingIntent pendingIntent = bGTS ? createActionPlayGTSPendingIntent() : createActionVibrateTimeAndSetNextAlarmPendingIntent();

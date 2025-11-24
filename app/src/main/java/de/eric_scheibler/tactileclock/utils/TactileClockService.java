@@ -1,10 +1,14 @@
 package de.eric_scheibler.tactileclock.utils;
 
+import android.os.Build;
+import android.os.IBinder;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.os.Handler;
 import android.os.Looper;
-import java.util.Calendar;
 
 import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -18,15 +22,13 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 
-import android.os.Build;
-import android.os.IBinder;
-
 import de.eric_scheibler.tactileclock.R;
 import de.eric_scheibler.tactileclock.data.HourFormat;
 import de.eric_scheibler.tactileclock.data.TimeComponentOrder;
 import de.eric_scheibler.tactileclock.ui.activity.MainActivity;
+
+import java.util.Calendar;
 import timber.log.Timber;
-import android.annotation.SuppressLint;
 import android.content.pm.ServiceInfo;
 import androidx.core.app.ServiceCompat;
 import androidx.core.app.NotificationCompat;
@@ -97,7 +99,8 @@ public class TactileClockService extends Service {
                 }
 
             } else if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
-                vibrator.cancel(); // vibration will be canceled if screen is turned on while vibrating
+                // vibration will be canceled if screen is turned on while vibrating
+                Helper.cancelVibration();
                 long activationTimeDifference = System.currentTimeMillis() - lastActivation;
                 Timber.d("diff: %1$d = %2$d - %3$d", activationTimeDifference, System.currentTimeMillis(), lastActivation);
                 if (settingsManagerInstance.getPowerButtonServiceEnabled()
@@ -395,12 +398,11 @@ public class TactileClockService extends Service {
 
 
     /**
-     * do not desturb and active call
+     * do not disturb or active call
      */
-
     @TargetApi(Build.VERSION_CODES.M)
     private boolean isVibrationAllowed() {
-        // do not desturb
+        // do not disturb
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             if (notificationManager.getCurrentInterruptionFilter() != NotificationManager.INTERRUPTION_FILTER_ALL) {
                 return false;

@@ -156,8 +156,7 @@ public class WatchFragment extends Fragment implements IntegerSelector {
     }
 
     private void updateUI() {
-        buttonStartWatch.setChecked(
-                settingsManagerInstance.isWatchEnabled());
+        buttonStartWatch.setChecked(settingsManagerInstance.isWatchEnabled());
         buttonStartWatch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (settingsManagerInstance.isWatchEnabled() != isChecked) {

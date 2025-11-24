@@ -77,7 +77,6 @@
 
     <!-- settings activity -->
     <string name="settingsActivityTitle">Settings</string>
-    <string name="switchMaxStrengthVibrations">Vibrate with maximal intensity</string>
     <string name="switchRoundMinutes">Round minutes to 5</string>
     <string name="labelHourFormat">Choose between 12 and 24 hour time format</string>
     <string name="button12Hours">12 hour format</string>
@@ -85,7 +84,8 @@
     <string name="labelTimeComponentOrder">Time component order</string>
     <string name="buttonHoursMinutes">Hours first, then minutes</string>
     <string name="buttonMinutesHours">Minutes first, then hours</string>
-    <string name="labelVibrationDurations">Vibration durations</string>
+    <string name="labelVibrationSettings">Vibration settings</string>
+    <string name="switchMaxStrengthVibrations">Vibrate with maximal intensity</string>
     <string name="labelShort">Short</string>
     <string name="labelShortCD">Short vibration</string>
     <string name="labelLong">Long</string>
@@ -114,6 +114,8 @@
     <string name="dialogCancel">Cancel</string>
     <string name="dialogEnabled">On</string>
     <string name="dialogDisabled">Off</string>
+    <string name="warning_dnd_active">Do Not Disturb is enabled</string>
+    <string name="warning_exact_alarm_permission_missing">Cannot schedule exact alarms. Please check permissions.</string>
 
     <!--
          plurals
