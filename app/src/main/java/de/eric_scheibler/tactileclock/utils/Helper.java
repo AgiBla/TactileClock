@@ -7,14 +7,35 @@ import androidx.annotation.RequiresApi;
 import android.os.Vibrator;
 import android.os.Build;
 import android.os.VibrationEffect;
+import androidx.core.view.AccessibilityDelegateCompat;
+import android.view.View;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.annotation.NonNull;
+import android.widget.Button;
 
 
 
 public class Helper {
 
+
+    /**
+     * accessibility
+     */
+
     public static boolean isScreenReaderEnabled() {
         AccessibilityManager accessibilityManager = (AccessibilityManager) ApplicationInstance.getContext().getSystemService(Context.ACCESSIBILITY_SERVICE);
         return ! accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_SPOKEN).isEmpty();
+    }
+
+    public static AccessibilityDelegateCompat getAccessibilityDelegateViewClassButton() {
+        // informs talkback, that the selected ui element is a button
+        return new AccessibilityDelegateCompat() {
+            @Override public void onInitializeAccessibilityNodeInfo(
+                    @NonNull View host, @NonNull AccessibilityNodeInfoCompat info) {
+                super.onInitializeAccessibilityNodeInfo(host, info);
+                info.setClassName(Button.class.getName());
+            }
+        };
     }
 
 

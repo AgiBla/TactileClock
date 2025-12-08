@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -14,16 +13,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
-            android:text="@string/labelWatchFragmentHeader" />
+            android:text="@string/labelWatchFragmentHeader"
+            android:theme="@style/HeadingTextView" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/buttonStartWatch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
             android:textSize="26sp"
             android:text="@string/buttonStartWatch" />
+
+
+        <!-- vibration options -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/labelWatchVibrationOptions"
+            android:theme="@style/HeadingTextView" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchEnableVibration"
@@ -31,25 +41,16 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:minHeight="@dimen/minHeight"
+            android:layout_marginTop="4dp"
             android:text="@string/buttonEnableVibration" />
 
         <LinearLayout
             android:id="@+id/containerVibrationOptions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:padding="15dp"
-            android:layout_marginTop="4dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:text="@string/labelWatchOptions"
-                android:textStyle="bold"
-                android:textColor="@color/heading"
-                android:accessibilityHeading="true"
-                tools:ignore="UnusedAttribute" />
+            android:layout_marginTop="4dp"
+            android:orientation="vertical" >
 
             <Button
                 android:id="@+id/buttonWatchInterval"
@@ -79,20 +80,32 @@
                 android:text="@string/buttonWatchAnnouncementVibration" />
         </LinearLayout>
 
+
+        <!--- sound options -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/labelWatchSoundOptions"
+            android:theme="@style/HeadingTextView" />
+
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/buttonPlayGTS"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="@dimen/minHeight"
+            android:layout_marginTop="4dp"
             android:text="@string/buttonPlayGTS" />
 
         <LinearLayout
             android:id="@+id/containerGTSOptions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="15dp">
+            android:padding="15dp"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical" >
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/buttonWatchPlayGTSWhileMusic"
@@ -101,7 +114,6 @@
                 android:minHeight="@dimen/minHeight"
                 android:text="@string/buttonWatchPlayGTSWhileMusic" />
         </LinearLayout>
-
 
     </LinearLayout>
 </ScrollView>

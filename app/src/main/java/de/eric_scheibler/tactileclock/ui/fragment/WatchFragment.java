@@ -21,6 +21,7 @@ import android.os.Build;
 import android.content.Intent;
 import android.provider.Settings;
 import de.eric_scheibler.tactileclock.utils.ApplicationInstance;
+import androidx.appcompat.widget.SwitchCompat;
 
 
 public class WatchFragment extends Fragment implements IntegerSelector {
@@ -28,10 +29,10 @@ public class WatchFragment extends Fragment implements IntegerSelector {
 	// Store instance variables
 	private SettingsManager settingsManagerInstance;
 
-    private androidx.appcompat.widget.SwitchCompat buttonStartWatch, buttonEnableVibration, buttonPlayGTS;
+    private SwitchCompat buttonStartWatch, buttonEnableVibration, buttonPlayGTS;
     private LinearLayout containerVibrationOptions, containerGTSOptions;
     private Button buttonWatchInterval;
-    private androidx.appcompat.widget.SwitchCompat buttonWatchOnlyVibrateMinutes, buttonWatchStartAtNextFullHour, buttonWatchAnnouncementVibration, buttonWatchPlayGTSWhileMusic;
+    private SwitchCompat buttonWatchOnlyVibrateMinutes, buttonWatchStartAtNextFullHour, buttonWatchAnnouncementVibration, buttonWatchPlayGTSWhileMusic;
 
     // newInstance constructor for creating fragment with arguments
     public static WatchFragment newInstance() {
@@ -51,10 +52,10 @@ public class WatchFragment extends Fragment implements IntegerSelector {
 	@Override public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-        buttonStartWatch = (androidx.appcompat.widget.SwitchCompat) view.findViewById(R.id.buttonStartWatch);
+        buttonStartWatch = (SwitchCompat) view.findViewById(R.id.buttonStartWatch);
         buttonStartWatch.setOnCheckedChangeListener(null);
 
-        buttonEnableVibration = (androidx.appcompat.widget.SwitchCompat) view.findViewById(R.id.switchEnableVibration);
+        buttonEnableVibration = (SwitchCompat) view.findViewById(R.id.switchEnableVibration);
         buttonEnableVibration.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (settingsManagerInstance.getWatchEnableVibration() != isChecked) {
@@ -78,7 +79,7 @@ public class WatchFragment extends Fragment implements IntegerSelector {
             }
         });
 
-        buttonWatchOnlyVibrateMinutes = (androidx.appcompat.widget.SwitchCompat) view.findViewById(R.id.buttonWatchOnlyVibrateMinutes);
+        buttonWatchOnlyVibrateMinutes = (SwitchCompat) view.findViewById(R.id.buttonWatchOnlyVibrateMinutes);
         buttonWatchOnlyVibrateMinutes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (settingsManagerInstance.getWatchOnlyVibrateMinutes() != isChecked) {
@@ -87,7 +88,7 @@ public class WatchFragment extends Fragment implements IntegerSelector {
             }
         });
 
-        buttonWatchStartAtNextFullHour = (androidx.appcompat.widget.SwitchCompat) view.findViewById(R.id.buttonWatchStartAtNextFullHour);
+        buttonWatchStartAtNextFullHour = (SwitchCompat) view.findViewById(R.id.buttonWatchStartAtNextFullHour);
         buttonWatchStartAtNextFullHour.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (settingsManagerInstance.getWatchStartAtNextFullHour() != isChecked) {
@@ -96,7 +97,7 @@ public class WatchFragment extends Fragment implements IntegerSelector {
             }
         });
 
-        buttonWatchAnnouncementVibration = (androidx.appcompat.widget.SwitchCompat) view.findViewById(R.id.buttonWatchAnnouncementVibration);
+        buttonWatchAnnouncementVibration = (SwitchCompat) view.findViewById(R.id.buttonWatchAnnouncementVibration);
         buttonWatchAnnouncementVibration.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (settingsManagerInstance.getWatchAnnouncementVibration() != isChecked) {
@@ -105,7 +106,7 @@ public class WatchFragment extends Fragment implements IntegerSelector {
             }
         });
 
-        buttonPlayGTS = (androidx.appcompat.widget.SwitchCompat) view.findViewById(R.id.buttonPlayGTS);
+        buttonPlayGTS = (SwitchCompat) view.findViewById(R.id.buttonPlayGTS);
         buttonPlayGTS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (settingsManagerInstance.getPlayGTS() != isChecked) {
@@ -117,7 +118,7 @@ public class WatchFragment extends Fragment implements IntegerSelector {
 
         containerGTSOptions = (LinearLayout) view.findViewById(R.id.containerGTSOptions);
 
-        buttonWatchPlayGTSWhileMusic = (androidx.appcompat.widget.SwitchCompat) view.findViewById(R.id.buttonWatchPlayGTSWhileMusic);
+        buttonWatchPlayGTSWhileMusic = (SwitchCompat) view.findViewById(R.id.buttonWatchPlayGTSWhileMusic);
         buttonWatchPlayGTSWhileMusic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -218,7 +219,7 @@ public class WatchFragment extends Fragment implements IntegerSelector {
 
     @TargetApi(Build.VERSION_CODES.S)
     private void tryToEnableWatch() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             if (! ApplicationInstance.canScheduleExactAlarms()) {
                 Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
                 startActivity(intent);

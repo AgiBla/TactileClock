@@ -37,5 +37,5 @@ separation of two digits within the hour and minute field, and a long one [ &#16
 hours and minutes
 
 
-The app supports all devices with Android version >= 4.1 (API 16).
+The app supports all devices with Android version >= 5.1 (API 21).
 This app is also available in the [Play Store](https://play.google.com/store/apps/details?id=de.eric_scheibler.tactileclock&hl=en) and at [IzzyOnDroid](https://apt.izzysoft.de/packages/de.eric_scheibler.tactileclock).

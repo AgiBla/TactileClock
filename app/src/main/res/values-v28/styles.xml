@@ -1,8 +1,10 @@
 <resources>
 
     <style name="HeadingTextView" parent="Widget.AppCompat.TextView">
-        <item name="android:accessibilityHeading">true</item>
+        <item name="android:textSize">@dimen/textSizeHeading</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/heading</item>
+        <item name="android:accessibilityHeading">true</item>
     </style>
 
 </resources>

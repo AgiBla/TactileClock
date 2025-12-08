@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- text: white -->
+    <color name="text">#ffffff</color>
+
+    <!-- headings: orange -->
+    <color name="heading">#FFA500</color>
+
+    <!-- links: blue-->
+    <color name="link">#6eb6ff</color>
+
+</resources>

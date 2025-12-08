@@ -34,12 +34,13 @@
     <string name="fragmentWatch">Watch</string>
     <string name="labelWatchFragmentHeader">Continuous vibration of the current time</string>
     <string name="buttonStartWatch">Start watch</string>
-    <string name="buttonEnableVibration">Enable vibration</string>
-    <string name="labelWatchOptions">Options:</string>
+    <string name="labelWatchVibrationOptions">Vibration</string>
+    <string name="buttonEnableVibration">Vibrate time</string>
     <string name="buttonWatchInterval">Vibration interval</string>
     <string name="buttonWatchOnlyVibrateMinutes">Vibrate minutes only</string>
     <string name="buttonWatchStartAtNextFullHour">Start at next full hour</string>
     <string name="buttonWatchAnnouncementVibration">Announcement vibration</string>
+    <string name="labelWatchSoundOptions">Sounds</string>
     <string name="buttonPlayGTS">Play Greenwich Time Signal</string>
     <string name="buttonWatchPlayGTSWhileMusic">Reproduce while music is playing</string>
 
@@ -90,6 +91,7 @@
     <string name="labelShortCD">Short vibration</string>
     <string name="labelLong">Long</string>
     <string name="labelLongCD">Long vibration</string>
+    <string name="sliderVibrationDurationCD">Vibration duration</string>
     <string name="labelTestVibrationHeading">Test time vibration</string>
     <string name="buttonRefreshTestTime">Refresh time</string>
     <string name="buttonTestVibration">Test</string>

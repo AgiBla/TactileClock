@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- default font size and color -->
         <item name="android:textSize">@dimen/textSize</item>
         <item name="android:textColor">@color/text</item>
@@ -16,7 +16,9 @@
     </style>
 
     <style name="HeadingTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/textSizeHeading</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/heading</item>
     </style>
 
 </resources>

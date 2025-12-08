@@ -6,10 +6,8 @@
     <!-- min height -->
     <dimen name="minHeight">48dp</dimen>
 
-    <!-- divider -->
-    <dimen name="toolbarDividerHeight">3dp</dimen>
-
     <!-- text size -->
     <dimen name="textSize">18sp</dimen>
+    <dimen name="textSizeHeading">22sp</dimen>
 
 </resources>

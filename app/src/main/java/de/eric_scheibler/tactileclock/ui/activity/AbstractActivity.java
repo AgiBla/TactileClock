@@ -1,5 +1,8 @@
 package de.eric_scheibler.tactileclock.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
+import de.eric_scheibler.tactileclock.utils.TactileClockService;
 import de.eric_scheibler.tactileclock.R;
 
 import android.view.ViewGroup.MarginLayoutParams;
@@ -44,10 +47,6 @@ public abstract class AbstractActivity extends AppCompatActivity implements Frag
         getSupportFragmentManager()
             .setFragmentResultListener(
                     HelpDialog.REQUEST_DIALOG_CLOSED, this, this);
-
-        // Make status bar icons dark
-        WindowInsetsControllerCompat windowInsetsController = WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
-        windowInsetsController.setAppearanceLightStatusBars(true);
 
         // margin for system bars at the top and bottom of the screen
         View rootView = findViewById(getRootViewResId());
@@ -99,6 +98,12 @@ public abstract class AbstractActivity extends AppCompatActivity implements Frag
             registerForActivityResult(
                     new ActivityResultContracts.RequestPermission(),
                     isGranted -> {
+                        if (isGranted) {
+                            // show notification
+                            Intent updateNotificationIntent = new Intent(this, TactileClockService.class);
+                            updateNotificationIntent.setAction(TactileClockService.ACTION_UPDATE_NOTIFICATION);
+                            ContextCompat.startForegroundService(this, updateNotificationIntent);
+                        }
                     });
 
 }

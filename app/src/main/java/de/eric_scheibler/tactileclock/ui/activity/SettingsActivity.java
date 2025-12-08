@@ -193,6 +193,8 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
         textViewLongValue = (TextView) findViewById(R.id.textViewLongValue);
 
         textClock = (TextView) findViewById(R.id.textClock);
+        ViewCompat.setAccessibilityDelegate(
+                textClock, Helper.getAccessibilityDelegateViewClassButton());
         textClock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -227,7 +229,7 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
                     // otherwise Talkback consumes the test vibration if Talkbacks vibration feedback is enabled
                     handler.postDelayed(() -> {
                         startService(intent);
-                    }, 666);
+                    }, 250);
 
                 } else {
                     startService(intent);
@@ -272,4 +274,5 @@ public class SettingsActivity extends AbstractActivity implements TimePickerDial
         // - Update
         textClock.setText(sdf.format(calendar.getTime()));
     }
+
 }

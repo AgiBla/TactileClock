@@ -111,7 +111,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:min="10"
-                        android:max="80" />
+                        android:max="80"
+                        android:contentDescription="@string/sliderVibrationDurationCD" />
 
                     <TextView
                         android:id="@+id/textViewShortValue"
@@ -135,7 +136,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:min="20"
-                        android:max="160" />
+                        android:max="160"
+                        android:contentDescription="@string/sliderVibrationDurationCD" />
 
                     <TextView
                         android:id="@+id/textViewLongValue"

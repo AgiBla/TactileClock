@@ -30,13 +30,14 @@
     <!-- watch fragment -->
     <string name="fragmentWatch">Reloj</string>
     <string name="labelWatchFragmentHeader">Vibración continua de la hora actual</string>
-    <string name="buttonEnableVibration">Activar vibración</string>
     <string name="buttonStartWatch">Iniciar reloj</string>
-    <string name="labelWatchOptions">Opciones:</string>
+    <string name="labelWatchVibrationOptions">Vibración</string>
+    <string name="buttonEnableVibration">Vibrar la hora</string>
     <string name="buttonWatchInterval">Intervalo de vibración</string>
     <string name="buttonWatchOnlyVibrateMinutes">Vibrar solo los minutos</string>
     <string name="buttonWatchStartAtNextFullHour">Comenzar en la próxima hora en punto</string>
     <string name="buttonWatchAnnouncementVibration">Vibración de anuncio</string>
+    <string name="labelWatchSoundOptions">Sonidos</string>
     <string name="buttonPlayGTS">Reproducir Greenwich Time Signal</string>
     <string name="buttonWatchPlayGTSWhileMusic">Reproducir mientras se reproduce música</string>
 
@@ -74,6 +75,7 @@
     <string name="labelShortCD">Corta vibración</string>
     <string name="labelLong">Larga</string>
     <string name="labelLongCD">Larga vibración</string>
+    <string name="sliderVibrationDurationCD">Duración de vibración</string>
     <string name="labelTestVibrationHeading">Test vibración de hora</string>
     <string name="buttonRefreshTestTime">Actualizar hora</string>
     <string name="buttonTestVibration">Test</string>
