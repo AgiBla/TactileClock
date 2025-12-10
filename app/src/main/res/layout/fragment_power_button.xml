@@ -8,29 +8,36 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            android:text="@string/labelPowerButtonFragmentHeader" />
-
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/buttonEnableService"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="@dimen/minHeight"
+            android:textSize="@dimen/textSizeHeading"
             android:text="@string/buttonEnableService" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
             android:focusable="true"
-            android:text="@string/labelPowerButtonClickInterval" />
+            android:layout_marginTop="4dp"
+            android:text="@string/labelPowerButtonFragmentDescription" />
+
+
+        <!-- click interval -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/labelPowerButtonClickInterval"
+            android:theme="@style/HeadingTextView" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
             android:orientation="horizontal" >
 
             <Button
@@ -48,19 +55,49 @@
                 android:text="@string/buttonPowerButtonUpperSuccessBoundary" />
         </LinearLayout>
 
+
+        <!-- what to do if screen was turned off-and-on instead of on-and-off -->
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
             android:focusable="true"
-            android:text="@string/labelErrorVibration" />
+            android:layout_marginTop="20dp"
+            android:text="@string/labelScreenOffOnHeading"
+            android:theme="@style/HeadingTextView" />
 
-        <Switch
-            android:id="@+id/buttonErrorVibration"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/minHeight"
-            android:text="@string/buttonErrorVibration" />
+            android:focusable="true"
+            android:layout_marginTop="4dp"
+            android:text="@string/labelScreenOffOnDescription" />
+
+        <RadioGroup
+            android:id="@+id/radioScreenOffOnAction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical" >
+
+            <RadioButton
+                android:id="@+id/buttonScreenOffOnDoNothing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/buttonScreenOffOnDoNothing" />
+
+            <RadioButton
+                android:id="@+id/buttonScreenOffOnErrorVibration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/buttonScreenOffOnErrorVibration" />
+
+            <RadioButton
+                android:id="@+id/buttonScreenOffOnVibrateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/buttonScreenOffOnVibrateTime" />
+        </RadioGroup>
 
     </LinearLayout>
 </ScrollView>

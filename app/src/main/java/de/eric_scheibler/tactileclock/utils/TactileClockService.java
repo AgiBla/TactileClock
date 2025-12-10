@@ -1,5 +1,6 @@
 package de.eric_scheibler.tactileclock.utils;
 
+
 import androidx.annotation.RequiresApi;
 import android.os.Build;
 import android.os.IBinder;
@@ -38,6 +39,10 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 public class TactileClockService extends Service {
 
+    public enum ScreenOffOn {
+        DO_NOTHING, ERROR_VIBRATION, VIBRATE_TIME
+    }
+
     // actions
     public static final String ACTION_UPDATE_NOTIFICATION = "de.eric_scheibler.tactileclock.action.update_notification";
     public static final String ACTION_VIBRATE_TIME = "de.eric_scheibler.tactileclock.action.vibrate_time";
@@ -59,6 +64,7 @@ public class TactileClockService extends Service {
     private NotificationManager notificationManager;
     private ScreenReceiver mScreenReceiver;
     private SettingsManager settingsManagerInstance;
+    private Handler handler;
 
     @Override public void onCreate() {
         super.onCreate();
@@ -68,6 +74,7 @@ public class TactileClockService extends Service {
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         settingsManagerInstance = SettingsManager.getInstance();
+        handler = new Handler(Looper.getMainLooper());
 
         // register receiver that handles screen on and screen off logic
         // can't be done in manifest
@@ -101,16 +108,28 @@ public class TactileClockService extends Service {
             } else if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
                 // vibration will be canceled if screen is turned on while vibrating
                 Helper.cancelVibration();
+
                 long activationTimeDifference = System.currentTimeMillis() - lastActivation;
                 Timber.d("diff: %1$d = %2$d - %3$d", activationTimeDifference, System.currentTimeMillis(), lastActivation);
                 if (settingsManagerInstance.getPowerButtonServiceEnabled()
-                        && settingsManagerInstance.getPowerButtonErrorVibration()
                         && activationTimeDifference > settingsManagerInstance.getPowerButtonLowerErrorBoundary()
                         && activationTimeDifference < settingsManagerInstance.getPowerButtonUpperErrorBoundary()) {
                     // double click detected
                     // but screen was turned off and on instead of on and off
-                    // vibrate error message
-                    Helper.vibrateOnce(settingsManagerInstance.getLongVibration() * 2);
+                    //
+                    // short delay due to display=on and Talkback (see SettingsActivity.java:buttonTest for details)
+                    switch (settingsManagerInstance.getScreenOffOnAction()) {
+                        case ERROR_VIBRATION:
+                            handler.postDelayed(() -> {
+                                Helper.vibrateOnce(settingsManagerInstance.getLongVibration() * 2);
+                            }, 250);
+                            break;
+                        case VIBRATE_TIME:
+                            handler.postDelayed(() -> {
+                                vibrateTime(false, false, false);
+                            }, 250);
+                            break;
+                    }
                 }
                 lastActivation = System.currentTimeMillis();
 
@@ -122,7 +141,7 @@ public class TactileClockService extends Service {
                         && activationTimeDifference < settingsManagerInstance.getPowerButtonUpperSuccessBoundary()) {
                     // double click detected
                     // screen was turned on and off correctly
-                    // vibrate time
+                    // vibrate time (no delay needed because display=off and therefore Talkback doesn't consume the vibration)
                     vibrateTime(false, false, false);
                 }
                 lastActivation = System.currentTimeMillis();
@@ -217,6 +236,7 @@ public class TactileClockService extends Service {
     }
 
     private void vibrateTime(boolean announcementVibration, boolean minutesOnly, int hours, int minutes) {
+        long MEDIUM_GAP = settingsManagerInstance.getMediumGap();
         long LONG_GAP = settingsManagerInstance.getLongGap();
 
         // Round minutes to the nearest multiple of 5 using integer arithmetic.
@@ -231,15 +251,19 @@ public class TactileClockService extends Service {
         }
 
         // create vibration pattern
-        long[] pattern = {LONG_GAP};
+        //
+        // start with a medium gap
+        long[] pattern = {MEDIUM_GAP};
 
         // announcement vibration
         if (announcementVibration) {
             pattern = concat(
                     pattern,
-                    new long[]{settingsManagerInstance.getLongVibration() * 2, SettingsManager.DEFAULT_LONG_GAP});
+                    new long[]{settingsManagerInstance.getLongVibration() * 2, LONG_GAP});
         }
+
         // hours and minutes
+
         if (settingsManagerInstance.getTimeComponentOrder() == TimeComponentOrder.MINUTES_HOURS) {
             // minutes first
             pattern = concat(pattern, getVibrationPatternForMinutes(minutes));
@@ -250,6 +274,7 @@ public class TactileClockService extends Service {
                 // then hours
                 pattern = concat(pattern, getVibrationPatternForHours(hours));
             }
+
         } else {
             // hours
             if (! minutesOnly) {
@@ -272,13 +297,10 @@ public class TactileClockService extends Service {
         Helper.vibratePattern(pattern);
 
         // send vibration finished broadcast
-        new Handler(Looper.getMainLooper()).postDelayed(
-                new Runnable() {
-                    @Override public void run() {
-                        LocalBroadcastManager.getInstance(TactileClockService.this)
-                            .sendBroadcast(new Intent(VIBRATION_FINISHED));
-                    }
-                }, totalDuration + 500l);
+        handler.postDelayed(() -> {
+            LocalBroadcastManager.getInstance(TactileClockService.this)
+                .sendBroadcast(new Intent(VIBRATION_FINISHED));
+        }, totalDuration + 500l);
     }
 
     private long[] getVibrationPatternForHours(int hours) {

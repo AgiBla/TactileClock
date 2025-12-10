@@ -38,10 +38,10 @@ public class MainActivity extends AbstractActivity {
     public static String EXTRA_NEW_TAB = "newTab";
 
 
-	private DrawerLayout drawerLayout;
+    private DrawerLayout drawerLayout;
     private NavigationView navigationView;
 
-	private ViewPager2 viewPager;
+    private ViewPager2 viewPager;
     private TabLayout tabLayout;
     private Tab selectedTab;
 
@@ -103,7 +103,7 @@ public class MainActivity extends AbstractActivity {
 
         // ViewPager2 and TabLayout
 
-		viewPager = (ViewPager2) findViewById(R.id.pager);
+        viewPager = (ViewPager2) findViewById(R.id.pager);
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override public void onPageSelected(int position) {
                 Timber.d("onPageSelected: %1$d", position);
@@ -113,7 +113,7 @@ public class MainActivity extends AbstractActivity {
             }
         });
 
-		tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override public void onTabSelected(TabLayout.Tab tab) {
                 loadFragment(tab.getPosition());
@@ -205,7 +205,7 @@ public class MainActivity extends AbstractActivity {
     }
 
 
-	private class TabAdapter extends FragmentStateAdapter {
+    private class TabAdapter extends FragmentStateAdapter {
 
         public TabAdapter(FragmentActivity activity) {
             super(activity);
@@ -224,7 +224,7 @@ public class MainActivity extends AbstractActivity {
             return null;
         }
 
-		@Override public int getItemCount() {
+        @Override public int getItemCount() {
             return Tab.values().length;
         }
 

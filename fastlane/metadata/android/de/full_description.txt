@@ -1,28 +1,39 @@
 Diese App gibt die aktuelle Uhrzeit als Vibrationspattern aus. Dazu muss das Display abgeschaltet
-sein und der Power-Button zweimal kurz hintereinander betätigt werden (Intervall von 50 bis 1500
-Millisekunden).
+sein und der Power-Button zweimal kurz hintereinander betätigt werden.
+Sollte der Doppelklick versehentlich ausgeführt werden, während das Display eingeschaltet ist, kann die App mit einer
+langen, durchgängigen Vibration davor warnen.
 
-Sollte der Doppelklick versehentlich ausgeführt werden, während das Display eingeschaltet ist, warnt die App mit einer langen, durchgängigen Vibration.
+Du kannst Tactile Clock auch verwenden, um die aktuelle Uhrzeit im Blick zu behalten.
+Die App kann die aktuelle Uhrzeit automatisch alle X Minuten oder jede Stunde vibrieren.
+Außerdem kann sie das [Greenwich Time Signal](https://de.wikipedia.org/wiki/Greenwich_Time_Signal) zu Beginn jeder Stunde abspielen, ähnlich wie es ein Radiosender tun würde.
 
 Der Hintergrunddienst startet automatisch nach dem Booten des Geräts.
 
-Grundsätzlich wird zwischen den folgenden zwei Vibrationspattern unterschieden: Eine kurze
-Vibration steht für die Ziffer 1 und eine lange Vibration für die Ziffer 5. Die Ziffer 2 wird somit
+Grundsätzlich wird zwischen den folgenden zwei Vibrationspattern unterschieden:
+
+Eine kurze Vibration steht für die Ziffer 1 und eine lange Vibration für die Ziffer 5. Die Ziffer 2 wird somit
 durch zwei aufeinander folgende kurze Vibrationen, die 6 durch eine lange und eine kurze Vibration
 dargestellt usw.. Die 0 bildet mit zwei langen Vibrationen eine Ausnahme.
 
 Beispiele:
 
-- 01:16 =   ..     k ... k .. l . k
-- 02:51 =   .. k . k ... l ..     k
-- 10:11 = k .. l . l ... k ..     k
+* 01:18 =  .    .  -...
+* 02:51 =  ..    -  .
+* 10:11 =  .  --    .  .
+* 19:06 =  .  -....    -.
 
-Erläuterung:
+Erklärung:
 
-Die Uhrzeit wird Ziffer für Ziffer verarbeitet. k = kurz, l = lang. Bei der Stundenangabe werden führende Nullen weggelassen.
+Die Uhrzeit wird Ziffer für Ziffer verarbeitet:
 
-Um die Vibrationen unterscheiden zu können, existieren drei unterschiedlich lange Pausen, gekennzeichnet durch die
-Anzahl von Punkten in den obigen Beispielen.  Ein einzelner Punkt steht für die Pause zwischen zwei Vibrationen, zwei
-Punkte symbolisieren die Trennung zwischen den Ziffern im Stunden- und Minutenfeld und drei Punkte trennen die Stunden
-von den Minuten.
+* . = kurz
+* - = lang
+
+Sowohl bei der Stunden-, als auch bei der Minutenangabe werden führende Nullen weggelassen.
+
+Um die Vibrationen unterscheiden zu können, existieren drei unterschiedlich lange Pausen:
+
+* []:     Kurz für die Pause zwischen zwei Vibrationen
+* [  ]:   Mittel für die Trennung zwischen den Ziffern im Stunden- und Minutenfeld
+* [    ]: Lang für die Pause zwischen Stunden und Minuten
 

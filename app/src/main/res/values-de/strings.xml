@@ -19,22 +19,24 @@
 
     <!-- power button service fragment -->
     <string name="fragmentPowerButton">Shortcut</string>
-    <string name="labelPowerButtonFragmentHeader">Hier lässt sich die Power-Button Tastenkombination
-        konfigurieren.\nUm die aktuelle Uhrzeit zu vibrieren, muss das Display abgeschaltet sein und
+    <string name="buttonEnableService">Power-Button Tastenkombination aktivieren</string>
+    <string name="labelPowerButtonFragmentDescription">Um die aktuelle Uhrzeit zu vibrieren, muss das Display abgeschaltet sein und
         der Power-Button zweimal kurz hintereinander betätigt werden.</string>
-    <string name="buttonEnableService">Tastenkombination aktivieren</string>
     <string name="labelPowerButtonClickInterval">Klickintervall:</string>
     <string name="buttonPowerButtonLowerSuccessBoundary">Von</string>
     <string name="buttonPowerButtonUpperSuccessBoundary">Bis</string>
-    <string name="labelErrorVibration">Warnvibration: Falls das Display bereits aktiviert und nach
+    <string name="labelScreenOffOnHeading">Bildschirm versehentlich eingeschaltet</string>
+    <string name="buttonScreenOffOnDoNothing">Nichts tun</string>
+    <string name="buttonScreenOffOnErrorVibration">Warnvibration</string>
+    <string name="buttonScreenOffOnVibrateTime">Uhrzeit vibrieren</string>
+    <string name="labelScreenOffOnDescription">Was soll geschehen, falls das Display bereits aktiviert und nach
         dem Doppelklick somit versehendlich aus- und wieder eingeschaltet wurde, statt es kurz ein-
         und dann wieder auszuschalten.</string>
-    <string name="buttonErrorVibration">Warnvibration</string>
 
     <!-- watch fragment -->
     <string name="fragmentWatch">Uhr</string>
-    <string name="labelWatchFragmentHeader">Dauerhafte Vibration der aktuellen Uhrzeit</string>
     <string name="buttonStartWatch">Uhr starten</string>
+    <string name="labelWatchFragmentDescription">Dauerhafte Vibration der aktuellen Uhrzeit</string>
     <string name="labelWatchVibrationOptions">Vibration</string>
     <string name="buttonEnableVibration">Uhrzeit vibrieren</string>
     <string name="buttonWatchInterval">Vibrationsintervall</string>
@@ -58,25 +60,34 @@
 
     <!-- HelpDialog -->
     <string name="helpDialogTitle">Tutorial</string>
-    <string name="labelApplicationDescription1">Diese App gibt die aktuelle Uhrzeit als
-        Vibrationspattern aus. Dazu muss das Display abgeschaltet sein und der Power-Button zweimal
-        kurz hintereinander betätigt werden (Standardintervall von 50 bis 1500 Millisekunden). Sollte der
-        Doppelklick versehentlich ausgeführt werden, während das Display eingeschaltet ist, warnt
-        die App mit einer langen, durchgängigen Vibration.</string>
-    <string name="labelApplicationDescription2">Der Hintergrunddienst startet automatisch nach dem Booten des Geräts.</string>
-    <string name="labelApplicationDescription3">Grundsätzlich wird zwischen den folgenden
-        zwei Vibrationspattern unterschieden: Eine kurze Vibration (.) steht für die Ziffer 1 und eine
-        lange Vibration (-) für die Ziffer 5. Die Ziffer 2 wird durch zwei aufeinander folgende
-        kurze Vibrationen, die 6 durch eine lange und eine kurze Vibration dargestellt usw.. Die 0
-        bildet mit zwei langen Vibrationen eine Ausnahme.</string>
-    <string name="labelApplicationDescription4">Beispiele:\n- 01:18 =  . &#160; .  -...  \n- 02:51 =  .. &#160; -  .  \n- 10:11 =  .  -- &#160; .  . \n- 19:06 =  .  -.... &#160; -.  </string>
-    <string name="labelApplicationDescription5">Erläuterung:\nDie Uhrzeit wird Ziffer für Ziffer
-        verarbeitet. . = kurz, - = lang. Werden führende Nullen weggelassen.
-        Um die Vibrationen unterscheiden zu können, existieren drei unterschiedlich lange Pausen.
-        Eine kurze Pause [ ] für die Trennung zwischen den Vibrationen einer Ziffer, eine mittlere
-        Pause [  ] für die Trennung zwischen den Ziffern und eine lange Pause [ &#160; ] für die
-        Trennung zwischen Stunden und Minuten.</string>
-    <string name="labelApplicationDescription6">Die App ermöglicht es auch, zu Beginn jeder Stunde das Greenwich Time Signal (auch bekannt als „Pips“) abzuspielen, ähnlich wie bei einem Radiosender.</string>
+    <string name="labelApplicationDescription1">Diese App gibt die aktuelle Uhrzeit als Vibrationspattern aus. Dazu muss das Display abgeschaltet
+        sein und der Power-Button zweimal kurz hintereinander betätigt werden. Sollte der Doppelklick versehentlich
+        ausgeführt werden, während das Display eingeschaltet ist, kann die App mit einer
+        langen, durchgängigen Vibration davor warnen.</string>
+    <string name="labelApplicationDescription2">Du kannst Tactile Clock auch verwenden, um die aktuelle Uhrzeit im Blick zu behalten.
+        Die App kann die aktuelle Uhrzeit automatisch alle X Minuten oder jede Stunde vibrieren.</string>
+    <string name="labelApplicationDescription3">Außerdem kann sie zu Beginn jeder Stunde das Greenwich Time Signal (auch bekannt als „Pips“) abspielen, ähnlich wie bei einem Radiosender.</string>
+    <string name="labelApplicationDescription4">Der Hintergrunddienst startet automatisch nach dem Booten des Geräts.</string>
+    <string name="labelVibrationPatternHeading">Vibrationspattern:</string>
+    <string name="labelVibrationPatternDescription1">Grundsätzlich wird zwischen den folgenden zwei Vibrationspattern unterschieden:</string>
+    <string name="labelVibrationPatternDescription2">Eine kurze Vibration steht für die Ziffer 1 und eine lange Vibration für die Ziffer 5. Die Ziffer 2 wird somit
+        durch zwei aufeinander folgende kurze Vibrationen, die 6 durch eine lange und eine kurze Vibration
+        dargestellt usw.. Die 0 bildet mit zwei langen Vibrationen eine Ausnahme.</string>
+    <string name="labelTimeFormatExampleHeading">Beispiele:</string>
+    <string name="labelTimeFormatExample1">• 01:18 =  . &#160; .  -...</string>
+    <string name="labelTimeFormatExample2">• 02:51 =  .. &#160; -  .</string>
+    <string name="labelTimeFormatExample3">• 10:11 =  .  -- &#160; .  .</string>
+    <string name="labelTimeFormatExample4">• 19:06 =  .  -.... &#160; -.</string>
+    <string name="labelTimeFormatExplanationHeading">Erklärung:</string>
+    <string name="labelTimeFormatExplanation1">Die Uhrzeit wird Ziffer für Ziffer verarbeitet.</string>
+    <string name="labelTimeFormatExplanation2">Der . steht für eine kurze und der - für eine lange Vibration.</string>
+    <string name="labelTimeFormatExplanation3">Sowohl bei der Stunden-, als auch bei der Minutenangabe werden führende Nullen weggelassen.</string>
+    <string name="labelTimeFormatGapHeading">Pausen:</string>
+    <string name="labelTimeFormatGapDescription">Um die Vibrationen unterscheiden zu können, existieren drei unterschiedlich lange Pausen:</string>
+    <string name="labelTimeFormatGap1">• []:     Kurz für die Pause zwischen zwei Vibrationen</string>
+    <string name="labelTimeFormatGap2">• [ ]:   Mittel für die Trennung zwischen den Ziffern im Stunden- und Minutenfeld</string>
+    <string name="labelTimeFormatGap3">• [&#160;]: Lang für die Pause zwischen Stunden und Minuten</string>
+
 
     <!-- settings activity -->
     <string name="settingsActivityTitle">Einstellungen</string>

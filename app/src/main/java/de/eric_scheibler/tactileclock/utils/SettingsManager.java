@@ -1,7 +1,9 @@
 package de.eric_scheibler.tactileclock.utils;
 
+import de.eric_scheibler.tactileclock.utils.TactileClockService.ScreenOffOn;
 
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import android.content.Context;
 import android.content.Intent;
@@ -39,7 +41,7 @@ public class SettingsManager {
     private static final String KEY_LONG_GAP = "longGap";
     // power button
     private static final String KEY_POWER_BUTTON_SERVICE_ENABLED = "enableService";
-    private static final String KEY_POWER_BUTTON_ERROR_VIBRATION = "errorVibration";
+    private static final String KEY_SCREEN_OFF_ON_ACTION = "screenOffOnAction";
     private static final String KEY_POWER_BUTTON_LOWER_SUCCESS_BOUNDARY = "lowerSuccessBoundary";
     private static final String KEY_POWER_BUTTON_UPPER_SUCCESS_BOUNDARY = "upperSuccessBoundary";
     // watch
@@ -53,7 +55,7 @@ public class SettingsManager {
     private static final String KEY_WATCH_PLAY_GTS = "playGTS";
     private static final String KEY_WATCH_PLAY_GTS_WHILE_MUSIC = "playGTSWhileMusic";
 
-	// defaults
+    // defaults
     //
     // general settings
     public static final boolean DEFAULT_FIRST_START = true;
@@ -62,12 +64,12 @@ public class SettingsManager {
 
     // power button
     public static final boolean DEFAULT_POWER_BUTTON_SERVICE_ENABLED = true;
-    public static final boolean DEFAULT_POWER_BUTTON_ERROR_VIBRATION = true;
+    public static final ScreenOffOn DEFAULT_SCREEN_OFF_ON_ACTION = ScreenOffOn.DO_NOTHING;
     // double click parameters
-    public static final long DEFAULT_POWER_BUTTON_LOWER_ERROR_BOUNDARY = 100;
+    public static final long DEFAULT_POWER_BUTTON_LOWER_ERROR_BOUNDARY = 1;
     public static final long DEFAULT_POWER_BUTTON_UPPER_ERROR_BOUNDARY = 1000;
-    public static final long DEFAULT_POWER_BUTTON_LOWER_SUCCESS_BOUNDARY = 250;
-    public static final long DEFAULT_POWER_BUTTON_UPPER_SUCCESS_BOUNDARY = 1350;
+    public static final long DEFAULT_POWER_BUTTON_LOWER_SUCCESS_BOUNDARY = 300;
+    public static final long DEFAULT_POWER_BUTTON_UPPER_SUCCESS_BOUNDARY = 1800;
 
     // watch
     public static final boolean DEFAULT_WATCH_ENABLED = false;
@@ -78,21 +80,22 @@ public class SettingsManager {
     public static final boolean DEFAULT_WATCH_START_AT_NEXT_FULL_HOUR = false;
     public static final boolean DEFAULT_WATCH_ANNOUNCEMENT_VIBRATION = false;
     public static final boolean DEFAULT_WATCH_PLAY_GTS = false;
-    public static final boolean DEFAULT_WATCH_PLAY_GTS_WHILE_MUSIC = true;
+    public static final boolean DEFAULT_WATCH_PLAY_GTS_WHILE_MUSIC = false;
 
     // vibration durations
-    public static final int DEFAULT_SHORT_VIBRATION = 150;
-    public static final int DEFAULT_LONG_VIBRATION = 500;
+    private static final int DEFAULT_SHORT_VIBRATION = 150;
+    private static final int DEFAULT_LONG_VIBRATION = 500;
 
     // vibration gap durations
-    public static final int DEFAULT_SHORT_GAP = 250;
-    public static final int DEFAULT_MEDIUM_GAP = 750;
-    public static final int DEFAULT_LONG_GAP = 1250;
+    private static final int DEFAULT_SHORT_GAP = 250;
+    private static final int DEFAULT_MEDIUM_GAP = 775;
+    private static final int DEFAULT_LONG_GAP = 1300;
 
-	// class variables
+    // class variables
     private static SettingsManager managerInstance;     // singleton
-	private Context context;
-	private SharedPreferences settings;
+    private Context context;
+    private SharedPreferences settings;
+    private Gson gson;
 
     public static SettingsManager getInstance() {
         if (managerInstance == null){
@@ -110,8 +113,11 @@ public class SettingsManager {
 
     private SettingsManager() {
         this.context = ApplicationInstance.getContext();
-		this.settings = PreferenceManager.getDefaultSharedPreferences(context);
-	}
+        this.settings = PreferenceManager.getDefaultSharedPreferences(context);
+        this.gson = new GsonBuilder()
+            .enableComplexMapKeySerialization()
+            .create();
+    }
 
     public String getApplicationVersion() {
         try {
@@ -243,18 +249,6 @@ public class SettingsManager {
         ContextCompat.startForegroundService(context, updateNotificationIntent);
     }
 
-    public boolean getPowerButtonErrorVibration() {
-        return settings.getBoolean(
-                KEY_POWER_BUTTON_ERROR_VIBRATION,
-                DEFAULT_POWER_BUTTON_ERROR_VIBRATION);
-    }
-
-    public void setPowerButtonErrorVibration(boolean enabled) {
-        Editor editor = settings.edit();
-        editor.putBoolean(KEY_POWER_BUTTON_ERROR_VIBRATION, enabled);
-        editor.apply();
-    }
-
     public long getPowerButtonLowerErrorBoundary() {
         return DEFAULT_POWER_BUTTON_LOWER_ERROR_BOUNDARY;
     }
@@ -286,6 +280,23 @@ public class SettingsManager {
         Editor editor = settings.edit();
         editor.putLong(
                 KEY_POWER_BUTTON_UPPER_SUCCESS_BOUNDARY, boundary);
+        editor.apply();
+    }
+
+    public ScreenOffOn getScreenOffOnAction() {
+        ScreenOffOn screenOffOn = null;
+        try {
+            screenOffOn = gson.fromJson(
+                settings.getString(KEY_SCREEN_OFF_ON_ACTION, ""),
+                ScreenOffOn.class);
+        } catch (ClassCastException e) {}
+        return screenOffOn != null ? screenOffOn : DEFAULT_SCREEN_OFF_ON_ACTION;
+    }
+
+    public void setScreenOffOnAction(ScreenOffOn newAction) {
+        Editor editor = settings.edit();
+        editor.putString(
+                KEY_SCREEN_OFF_ON_ACTION, gson.toJson(newAction));
         editor.apply();
     }
 

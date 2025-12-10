@@ -8,48 +8,173 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
+
+        <!-- general information -->
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:focusable="true"
             android:text="@string/labelApplicationDescription1" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="4dp"
             android:focusable="true"
             android:text="@string/labelApplicationDescription2" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="4dp"
             android:focusable="true"
             android:text="@string/labelApplicationDescription3" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="4dp"
             android:focusable="true"
-            android:fontFamily="serif-monospace"
             android:text="@string/labelApplicationDescription4" />
 
+
+        <!-- vibration pattern information -->
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:focusable="true"
-            android:text="@string/labelApplicationDescription5" />
+            android:text="@string/labelVibrationPatternHeading"
+            android:theme="@style/HeadingTextView" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:focusable="true"
-            android:text="@string/labelApplicationDescription6" />
+            android:text="@string/labelVibrationPatternDescription1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:focusable="true"
+            android:text="@string/labelVibrationPatternDescription2" />
+
+
+        <!-- time format examples -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:focusable="true"
+            android:text="@string/labelTimeFormatExampleHeading"
+            android:theme="@style/HeadingTextView" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:focusable="true"
+            android:fontFamily="serif-monospace"
+            android:text="@string/labelTimeFormatExample1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:fontFamily="serif-monospace"
+            android:text="@string/labelTimeFormatExample2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:fontFamily="serif-monospace"
+            android:text="@string/labelTimeFormatExample3" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:fontFamily="serif-monospace"
+            android:text="@string/labelTimeFormatExample4" />
+
+
+        <!-- time format explanation -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:focusable="true"
+            android:text="@string/labelTimeFormatExplanationHeading"
+            android:theme="@style/HeadingTextView" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:focusable="true"
+            android:text="@string/labelTimeFormatExplanation1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:focusable="true"
+            android:text="@string/labelTimeFormatExplanation2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:focusable="true"
+            android:text="@string/labelTimeFormatExplanation3" />
+
+
+
+        <!-- gaps -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:focusable="true"
+            android:text="@string/labelTimeFormatGapHeading"
+            android:theme="@style/HeadingTextView" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:focusable="true"
+            android:text="@string/labelTimeFormatGapDescription" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:focusable="true"
+            android:text="@string/labelTimeFormatGap1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:focusable="true"
+            android:text="@string/labelTimeFormatGap2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:focusable="true"
+            android:text="@string/labelTimeFormatGap3" />
 
     </LinearLayout>
 </ScrollView>

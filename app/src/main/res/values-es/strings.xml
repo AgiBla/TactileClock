@@ -19,18 +19,24 @@
 
     <!-- power button service fragment -->
     <string name="fragmentPowerButton">Atajo</string>
-    <string name="labelPowerButtonFragmentHeader">Configura el atajo del botón de encendido.\nPara vibrar la hora actual, presiona el botón de encendido dos veces rápidamente mientras la pantalla está bloqueada.</string>
-    <string name="buttonEnableService">Activar atajo</string>
+    <string name="buttonEnableService">Activar atajo del botón de encendido</string>
+    <string name="labelPowerButtonFragmentDescription">Para vibrar la hora actual, la pantalla debe
+        estar apagada. Presiona el botón de encendido dos veces seguidas rápidamente.</string>
     <string name="labelPowerButtonClickInterval">Intervalo de clic:</string>
     <string name="buttonPowerButtonLowerSuccessBoundary">Desde</string>
     <string name="buttonPowerButtonUpperSuccessBoundary">Hasta</string>
-    <string name="labelErrorVibration">Vibración de advertencia: si se realiza un doble clic accidentalmente mientras la pantalla está activa</string>
-    <string name="buttonErrorVibration">Vibración de advertencia</string>
+    <string name="labelScreenOffOnHeading">Pantalla encendida accidentalmente</string>
+    <string name="buttonScreenOffOnDoNothing">No hacer nada</string>
+    <string name="buttonScreenOffOnErrorVibration">Vibración de advertencia</string>
+    <string name="buttonScreenOffOnVibrateTime">Vibrar hora</string>
+    <string name="labelScreenOffOnDescription">Qué debe suceder si la pantalla ya está encendida
+        al hacer doble clic en el botón de encendido, causando que se apague y vuelva a encender en
+        lugar de encenderse brevemente y apagarse de nuevo.</string>
 
     <!-- watch fragment -->
     <string name="fragmentWatch">Reloj</string>
-    <string name="labelWatchFragmentHeader">Vibración continua de la hora actual</string>
     <string name="buttonStartWatch">Iniciar reloj</string>
+    <string name="labelWatchFragmentDescription">Vibración continua de la hora actual</string>
     <string name="labelWatchVibrationOptions">Vibración</string>
     <string name="buttonEnableVibration">Vibrar la hora</string>
     <string name="buttonWatchInterval">Intervalo de vibración</string>
@@ -54,12 +60,41 @@
 
     <!-- HelpDialog -->
     <string name="helpDialogTitle">Tutorial</string>
-    <string name="labelApplicationDescription1">Esta aplicación de Android vibra la hora actual cuando se pulsa dos veces el botón de encendido mientras la pantalla está apagada. Si el doble clic se realiza accidentalmente con la pantalla encendida, la aplicación avisa con una vibración larga y persistente.</string>
-    <string name="labelApplicationDescription2">El proceso en segundo plano se inicia automáticamente al arrancar la aplicación.</string>
-    <string name="labelApplicationDescription3">Existen dos patrones de vibración diferentes:\nUna vibración corta representa el dígito 1 y una larga el dígito 5. El 2 se representa con dos vibraciones cortas consecutivas, el 6 con una larga y una corta y así sucesivamente. El 0 constituye una excepción con dos vibraciones largas.</string>
-    <string name="labelApplicationDescription4">Ejemplos:\n- 01:18 =  . &#160; .  -...  \n- 02:51 =  .. &#160; -  .  \n- 10:11 =  .  -- &#160; .  . \n- 19:06 =  .  -.... &#160; -.  </string>
-    <string name="labelApplicationDescription5">Explicación:\nLa hora se procesa dígito por dígito.\n. = corta, - = larga. Se omite el cero a la izquierda. Para simplificar el reconocimiento del patrón de vibración, existen tres tipos de pausas con diferentes duraciones: una pausa corta [] entre vibraciones en el mismo dígito, una pausa media [  ] para la separación de dos dígitos dentro del campo de la hora y los minutos, y una larga [ &#160;  &#160; ] para dividir horas y minutos.</string>
-    <string name="labelApplicationDescription6">La aplicación también permite reproducir la Greenwich Time Signal (popularmente conocido como The Pips) al comienzo de cada hora, como si fuese una emisora de radio.</string>
+    <string name="labelApplicationDescription1">Esta aplicación emite la hora actual como patrón de vibración. Para ello,
+        la pantalla debe estar apagada y el botón de encendido debe presionarse dos veces seguidas rápidamente. Si el
+        doble clic se ejecuta accidentalmente mientras la pantalla está encendida, la aplicación puede advertir con una
+        vibración larga y continua.</string>
+    <string name="labelApplicationDescription2">También puedes usar Tactile Clock para mantenerte informado sobre la hora
+        actual. La aplicación puede vibrar la hora actual automáticamente cada X minutos o cada hora.</string>
+    <string name="labelApplicationDescription3">Además, puede reproducir la Señal Horaria de Greenwich (también conocida
+        como \"Pips\") al inicio de cada hora, similar a como lo haría una estación de radio.</string>
+    <string name="labelApplicationDescription4">El servicio en segundo plano se inicia automáticamente después del arranque
+        del dispositivo.</string>
+    <string name="labelVibrationPatternHeading">Patrones de vibración:</string>
+    <string name="labelVibrationPatternDescription1">Básicamente, se distingue entre los siguientes dos patrones de
+        vibración:</string>
+    <string name="labelVibrationPatternDescription2">Una vibración corta representa el dígito 1 y una vibración larga
+        representa el dígito 5. El dígito 2 se representa así mediante dos vibraciones cortas consecutivas, el 6 mediante
+        una vibración larga y una corta, etc. El 0 es una excepción con dos vibraciones largas.</string>
+    <string name="labelTimeFormatExampleHeading">Ejemplos:</string>
+    <string name="labelTimeFormatExample1">• 01:18 =  . &#160; .  -...</string>
+    <string name="labelTimeFormatExample2">• 02:51 =  .. &#160; -  .</string>
+    <string name="labelTimeFormatExample3">• 10:11 =  .  -- &#160; .  .</string>
+    <string name="labelTimeFormatExample4">• 19:06 =  .  -.... &#160; -.</string>
+    <string name="labelTimeFormatExplanationHeading">Explicación:</string>
+    <string name="labelTimeFormatExplanation1">La hora se procesa dígito por dígito.</string>
+    <string name="labelTimeFormatExplanation2">El . representa una vibración corta y el - una vibración larga.</string>
+    <string name="labelTimeFormatExplanation3">Tanto en las horas como en los minutos se omiten los ceros
+        iniciales.</string>
+    <string name="labelTimeFormatGapHeading">Pausas:</string>
+    <string name="labelTimeFormatGapDescription">Para poder distinguir las vibraciones, existen tres pausas de diferente
+        duración:</string>
+    <string name="labelTimeFormatGap1">• []:     Corta para la pausa entre dos vibraciones</string>
+    <string name="labelTimeFormatGap2">• [ ]:   Media para la separación entre los dígitos en el campo de horas y
+        minutos</string>
+    <string name="labelTimeFormatGap3">• [&#160;]: Larga para la pausa entre horas y minutos</string>
+
+
     <!-- settings activity -->
     <string name="settingsActivityTitle">Ajustes</string>
     <string name="switchRoundMinutes">Redondear minutos a 5</string>

@@ -19,21 +19,24 @@
 
     <!-- power button service fragment -->
     <string name="fragmentPowerButton">Shortcut</string>
-    <string name="labelPowerButtonFragmentHeader">Configure the power button shortcut.\nTo vibrate
-        the current time press the power button twice in quick succession while the display is
-        locked.</string>
-    <string name="buttonEnableService">Enable shortcut</string>
+    <string name="buttonEnableService">Enable power button shortcut</string>
+    <string name="labelPowerButtonFragmentDescription">To vibrate the current time, the display must be off.
+        Then press the power button twice in quick succession.</string>
     <string name="labelPowerButtonClickInterval">Click interval:</string>
     <string name="buttonPowerButtonLowerSuccessBoundary">From</string>
     <string name="buttonPowerButtonUpperSuccessBoundary">To</string>
-    <string name="labelErrorVibration">Warning vibration: If a double click of the power button is performed
-        accidentally while the display is active</string>
-    <string name="buttonErrorVibration">Warning vibration</string>
+    <string name="labelScreenOffOnHeading">Screen turned on accidentally</string>
+    <string name="buttonScreenOffOnDoNothing">Do nothing</string>
+    <string name="buttonScreenOffOnErrorVibration">Warning vibration</string>
+    <string name="buttonScreenOffOnVibrateTime">Vibrate time</string>
+    <string name="labelScreenOffOnDescription">What should happen if the display is already on
+        when double-clicking the power button, causing it to turn off and back on
+        instead of briefly turning on and off again.</string>
 
     <!-- watch fragment -->
     <string name="fragmentWatch">Watch</string>
-    <string name="labelWatchFragmentHeader">Continuous vibration of the current time</string>
     <string name="buttonStartWatch">Start watch</string>
+    <string name="labelWatchFragmentDescription">Continuous vibration of the current time</string>
     <string name="labelWatchVibrationOptions">Vibration</string>
     <string name="buttonEnableVibration">Vibrate time</string>
     <string name="buttonWatchInterval">Vibration interval</string>
@@ -58,23 +61,34 @@
     <!-- HelpDialog -->
     <string name="helpDialogTitle">Tutorial</string>
     <string name="labelApplicationDescription1">This Android app vibrates the current time when the
-        display is locked and the power button is pressed twice in a row with a delay between 50 and
-        1500 milliseconds. If the double click is performed accidentally while the display is still
-        active, the app warns with a long, persistent vibration.</string>
-    <string name="labelApplicationDescription2">The background process is started automatically after booting is finished.  </string>
-    <string name="labelApplicationDescription3">Two different vibration patterns exist:
-        A short vibration stands for the digit 1 and a long one for the digit 5. The 2
+        display is locked and the power button is pressed twice in a row. If the double click is performed accidentally while the display is still
+        active, the app can warn you with a long, persistent vibration.</string>
+    <string name="labelApplicationDescription2">You may also use Tactile clock to keep informed about the current time. The app
+        can vibrate the current time automatically every X minutes or every hour.</string>
+    <string name="labelApplicationDescription3">It can also play the Greenwich Time Signal (a.k.a the pips)
+        at the start of each hour, similar to a radio station.</string>
+    <string name="labelApplicationDescription4">The background process automatically initiates once the system has finished booting.</string>
+    <string name="labelVibrationPatternHeading">Vibration pattern:</string>
+    <string name="labelVibrationPatternDescription1">Two different vibration pattern exist:</string>
+    <string name="labelVibrationPatternDescription2">A short vibration stands for the digit 1 and a long one for the digit 5. The 2
         is represented by two consecutive short vibrations, the 6 by a long and a short one and so
         on. The 0 constitutes an exception with two long vibrations.</string>
-    <string name="labelApplicationDescription4">Examples:\n- 01:18 =  . &#160; .  -...  \n- 02:51 =  .. &#160; -  .  \n- 10:11 =  .  -- &#160; .  . \n- 19:06 =  .  -.... &#160; -.  </string>
-    <string name="labelApplicationDescription5">Explanation:\nThe time is processed digit by digit.
-        . = short, - = long. A leading zero is omitted. To simplify the
-        recognition of the vibration pattern, there exist three kind of gaps with different
-        durations: A short gap [] between vibrations in the same digit, a medium gap [  ] for the
-        separation of two digits within the hour and minute field, and a long one [ &#160;  &#160; ] to split
-        hours and minutes.</string>
-    <string name="labelApplicationDescription6">The app also allows for the Greenwich Time Signal (a.k.a the pips)
-        to be played at the start of each hour, similar to a radio station.</string>
+    <string name="labelTimeFormatExampleHeading">Examples:</string>
+    <string name="labelTimeFormatExample1">• 01:18 =  . &#160; .  -...</string>
+    <string name="labelTimeFormatExample2">• 02:51 =  .. &#160; -  .</string>
+    <string name="labelTimeFormatExample3">• 10:11 =  .  -- &#160; .  .</string>
+    <string name="labelTimeFormatExample4">• 19:06 =  .  -.... &#160; -.</string>
+    <string name="labelTimeFormatExplanationHeading">Explanation:</string>
+    <string name="labelTimeFormatExplanation1">The time is processed digit by digit.</string>
+    <string name="labelTimeFormatExplanation2">The . stands for a short and the - for a long vibration.</string>
+    <string name="labelTimeFormatExplanation3">Leading zeros in the hour and minute fields are omitted.</string>
+    <string name="labelTimeFormatGapHeading">Gaps:</string>
+    <string name="labelTimeFormatGapDescription">To simplify the recognition of the vibration pattern,
+        there exist three kind of gaps with different durations:</string>
+    <string name="labelTimeFormatGap1">• []:     A short gap between vibrations in the same digit</string>
+    <string name="labelTimeFormatGap2">• [ ]:   A medium gap for the separation of two digits within the hour and minute field</string>
+    <string name="labelTimeFormatGap3">• [&#160;]: A long gap to split hours and minutes</string>
+
 
     <!-- settings activity -->
     <string name="settingsActivityTitle">Settings</string>

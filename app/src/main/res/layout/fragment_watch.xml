@@ -9,20 +9,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            android:text="@string/labelWatchFragmentHeader"
-            android:theme="@style/HeadingTextView" />
-
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/buttonStartWatch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="26sp"
+            android:textSize="@dimen/textSizeHeading"
             android:text="@string/buttonStartWatch" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:layout_marginTop="4dp"
+            android:text="@string/labelWatchFragmentDescription" />
 
 
         <!-- vibration options -->

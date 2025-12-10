@@ -1,6 +1,7 @@
 package de.eric_scheibler.tactileclock.ui.fragment;
 
-import android.content.Context;
+import de.eric_scheibler.tactileclock.utils.TactileClockService.ScreenOffOn;
+import android.widget.RadioGroup;
 
 import android.os.Bundle;
 
@@ -10,7 +11,6 @@ import android.view.ViewGroup;
 
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 
 import de.eric_scheibler.tactileclock.R;
 import de.eric_scheibler.tactileclock.ui.dialog.SelectIntegerDialog.IntegerSelector;
@@ -18,6 +18,7 @@ import de.eric_scheibler.tactileclock.ui.dialog.SelectIntegerDialog.Token;
 import de.eric_scheibler.tactileclock.ui.dialog.SelectIntegerDialog;
 import de.eric_scheibler.tactileclock.utils.SettingsManager;
 import androidx.fragment.app.Fragment;
+import androidx.appcompat.widget.SwitchCompat;
 
 
 public class PowerButtonFragment extends Fragment implements IntegerSelector {
@@ -27,7 +28,8 @@ public class PowerButtonFragment extends Fragment implements IntegerSelector {
 
     // ui components
     private Button buttonPowerButtonLowerSuccessBoundary, buttonPowerButtonUpperSuccessBoundary;
-    private Switch buttonEnableService, buttonErrorVibration;
+    private SwitchCompat buttonEnableService;
+    private RadioGroup radioScreenOffOnAction;
 
     // newInstance constructor for creating fragment with arguments
     public static PowerButtonFragment newInstance() {
@@ -48,12 +50,12 @@ public class PowerButtonFragment extends Fragment implements IntegerSelector {
 		super.onViewCreated(view, savedInstanceState);
 
         // enable service
-        buttonEnableService = (Switch) view.findViewById(R.id.buttonEnableService);
+        buttonEnableService = (SwitchCompat) view.findViewById(R.id.buttonEnableService);
+        buttonEnableService.setChecked(
+                settingsManagerInstance.getPowerButtonServiceEnabled());
         buttonEnableService.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked != settingsManagerInstance.getPowerButtonServiceEnabled()) {
-                    settingsManagerInstance.setPowerButtonServiceEnabled(isChecked);
-                }
+                settingsManagerInstance.setPowerButtonServiceEnabled(isChecked);
             }
         });
 
@@ -81,12 +83,30 @@ public class PowerButtonFragment extends Fragment implements IntegerSelector {
             }
         });
 
-        // error vibration
-        buttonErrorVibration = (Switch) view.findViewById(R.id.buttonErrorVibration);
-        buttonErrorVibration.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked != settingsManagerInstance.getPowerButtonErrorVibration()) {
-                    settingsManagerInstance.setPowerButtonErrorVibration(isChecked);
+        radioScreenOffOnAction = (RadioGroup) view.findViewById(R.id.radioScreenOffOnAction);
+        switch (settingsManagerInstance.getScreenOffOnAction()) {
+            case DO_NOTHING:
+                radioScreenOffOnAction.check(R.id.buttonScreenOffOnDoNothing);
+                break;
+            case ERROR_VIBRATION:
+                radioScreenOffOnAction.check(R.id.buttonScreenOffOnErrorVibration);
+                break;
+            case VIBRATE_TIME:
+                radioScreenOffOnAction.check(R.id.buttonScreenOffOnVibrateTime);
+                break;
+        }
+        radioScreenOffOnAction.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                ScreenOffOn screenOffOnAction = null;
+                if (checkedId == R.id.buttonScreenOffOnDoNothing) {
+                    screenOffOnAction = ScreenOffOn.DO_NOTHING;
+                } else if (checkedId == R.id.buttonScreenOffOnErrorVibration) {
+                    screenOffOnAction = ScreenOffOn.ERROR_VIBRATION;
+                } else if (checkedId == R.id.buttonScreenOffOnVibrateTime) {
+                    screenOffOnAction = ScreenOffOn.VIBRATE_TIME;
+                }
+                if (screenOffOnAction != null) {
+                    settingsManagerInstance.setScreenOffOnAction(screenOffOnAction);
                 }
             }
         });
@@ -119,8 +139,6 @@ public class PowerButtonFragment extends Fragment implements IntegerSelector {
     }
 
     private void updateUI() {
-        buttonEnableService.setChecked(
-                settingsManagerInstance.getPowerButtonServiceEnabled());
         buttonPowerButtonLowerSuccessBoundary.setText(
                 String.format(
                     "%1$s: %2$s",
@@ -139,8 +157,6 @@ public class PowerButtonFragment extends Fragment implements IntegerSelector {
                         (int) settingsManagerInstance.getPowerButtonUpperSuccessBoundary(),
                         (int) settingsManagerInstance.getPowerButtonUpperSuccessBoundary()))
                 );
-        buttonErrorVibration.setChecked(
-                settingsManagerInstance.getPowerButtonErrorVibration());
     }
 
 }
