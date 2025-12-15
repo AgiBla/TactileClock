@@ -66,15 +66,15 @@
         vibración larga y continua.</string>
     <string name="labelApplicationDescription2">Tactile Clock puede mantenerte informado sobre la hora
         actual de forma automática. La aplicación puede vibrar la hora actual automáticamente cada X minutos o cada hora.</string>
-    <string name="labelApplicationDescription3">También puede reproducir la Señal Horaria de Greenwich (también conocida
-        como \"Pips\") al inicio de cada hora, similar a como lo haría una estación de radio.</string>
+    <string name="labelApplicationDescription3">También puede reproducir la Greenwich Time Signal (también conocida
+        como \"Pips\") al inicio de cada hora, tal y como lo haría una emisora de radio.</string>
     <string name="labelApplicationDescription4">El servicio en segundo plano se inicia automáticamente después del arranque
         del dispositivo.</string>
     <string name="labelVibrationPatternHeading">Patrones de vibración:</string>
     <string name="labelVibrationPatternDescription1">Se distingue entre los siguientes dos patrones de
         vibración:</string>
     <string name="labelVibrationPatternDescription2">Una vibración corta representa el dígito 1 y una vibración larga
-        representa el dígito 5. De está forma, el dígito 2 se representa mediante dos vibraciones cortas consecutivas, el 6 mediante
+        representa el dígito 5. De esta forma, el dígito 2 se representa mediante dos vibraciones cortas consecutivas, el 6 mediante
         una vibración larga y una corta, etc. El 0 se representa mediante dos vibraciones largas.</string>
     <string name="labelTimeFormatExampleHeading">Ejemplos:</string>
     <string name="labelTimeFormatExample1">• 01:18 =  . &#160; .  -...</string>
@@ -82,7 +82,7 @@
     <string name="labelTimeFormatExample3">• 10:11 =  .  -- &#160; .  .</string>
     <string name="labelTimeFormatExample4">• 19:06 =  .  -.... &#160; -.</string>
     <string name="labelTimeFormatExplanationHeading">Explicación:</string>
-    <string name="labelTimeFormatExplanation1">La hora se procesa dígito por dígito.</string>
+    <string name="labelTimeFormatExplanation1">La hora se procesa dígito a dígito.</string>
     <string name="labelTimeFormatExplanation2">El . representa una vibración corta y el - una vibración larga.</string>
     <string name="labelTimeFormatExplanation3">Tanto en las horas como en los minutos se omiten los ceros
         iniciales.</string>
@@ -92,7 +92,7 @@
     <string name="labelTimeFormatGap1">• []:     Corta para la pausa entre dos vibraciones</string>
     <string name="labelTimeFormatGap2">• [ ]:   Media para la separación entre los dígitos en el campo de horas y
         minutos</string>
-    <string name="labelTimeFormatGap3">• [&#160;]: Larga para la pausa entre horas y minutos</string>
+    <string name="labelTimeFormatGap3">• [&#160;&#160;]: Larga para la pausa entre horas y minutos</string>
 
 
     <!-- settings activity -->
